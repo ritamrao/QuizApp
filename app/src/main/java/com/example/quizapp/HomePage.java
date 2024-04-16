@@ -21,7 +21,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
     TextView questionTextView;
 
     Button ansA, ansB, ansC, ansD;
-    Button submitBtn;
+    Button submitBtn, checkBtn;
 
     int score=0;
     int totalQuestion = QuestionAnswer.question.length;
@@ -29,6 +29,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
     int currentQuestionIndex = 0;
     float percentage = 0;
     String selectedAnswer = "";
+    Button selectedButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +45,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         ansC = findViewById(R.id.ans_C);
         ansD = findViewById(R.id.ans_D);
         submitBtn = findViewById(R.id.submit_btn);
-
+        checkBtn = findViewById(R.id.check_btn);
+        selectedButton = submitBtn;
         ansA.setOnClickListener(this);
         ansB.setOnClickListener(this);
         ansC.setOnClickListener(this);
         ansD.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
+        checkBtn.setOnClickListener(this);
 
         totalQuestionsTextView.setText("Progress : "+ percentage);
 
@@ -69,6 +72,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         ansD.setBackgroundColor(Color.WHITE);
 
         Button clickedButton = (Button) view;
+
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
                 score++;
@@ -76,13 +80,52 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             currentQuestionIndex++;
             percentage = (float)((currentQuestionIndex*100)/totalQuestion);
             totalQuestionsTextView.setText("Progress Percentage "+ percentage);
+            checkBtn.setVisibility(View.VISIBLE);
             loadNewQuestion();
 
-        }else{
+        }
+
+        else if(clickedButton.getId()==R.id.check_btn){
+            checkBtn.setVisibility(View.INVISIBLE);
+
+            if (selectedButton.getId() == R.id.ans_A){
+                if(ansA.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
+                    ansA.setBackgroundColor(Color.GREEN);
+                }else {
+                    ansA.setBackgroundColor(Color.RED);
+                }
+            }
+
+            if (selectedButton.getId() == R.id.ans_B){
+                if(ansB.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
+                    ansB.setBackgroundColor(Color.GREEN);
+                }else {
+                    ansB.setBackgroundColor(Color.RED);
+                }
+            }
+
+            if (selectedButton.getId() == R.id.ans_C){
+                if(ansC.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
+                    ansC.setBackgroundColor(Color.GREEN);
+                }else {
+                    ansC.setBackgroundColor(Color.RED);
+                }
+            }
+
+            if (selectedButton.getId() == R.id.ans_D){
+                if(ansD.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
+                    ansD.setBackgroundColor(Color.GREEN);
+                }else {
+                    ansD.setBackgroundColor(Color.RED);
+                }
+            }
+        }
+
+        else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();
             clickedButton.setBackgroundColor(Color.MAGENTA);
-
+            selectedButton = clickedButton;
         }
 
     }

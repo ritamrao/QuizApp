@@ -74,18 +74,20 @@
 
     </LinearLayout>
 
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/check_btn"
-        android:text="Check"
+        android:id="@+id/submit_btn"
+        android:text="Submit"
         android:layout_below="@id/choices_layout"
         android:layout_marginTop="40dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/submit_btn"
+        android:id="@+id/check_btn"
         android:text="Submit"
         android:layout_below="@id/choices_layout"
         android:layout_marginTop="40dp"/>

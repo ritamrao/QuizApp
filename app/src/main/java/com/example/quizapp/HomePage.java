@@ -79,7 +79,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             }
             currentQuestionIndex++;
             percentage = (float)((currentQuestionIndex*100)/totalQuestion);
-            totalQuestionsTextView.setText("Progress Percentage "+ percentage);
+            totalQuestionsTextView.setText("Progress Percentage "+ percentage + "%");
             checkBtn.setVisibility(View.VISIBLE);
             loadNewQuestion();
 
@@ -88,37 +88,29 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         else if(clickedButton.getId()==R.id.check_btn){
             checkBtn.setVisibility(View.INVISIBLE);
 
-            if (selectedButton.getId() == R.id.ans_A){
-                if(ansA.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
-                    ansA.setBackgroundColor(Color.GREEN);
-                }else {
-                    ansA.setBackgroundColor(Color.RED);
-                }
-            }
+                String correctAnswer = QuestionAnswer.correctAnswers[currentQuestionIndex];
+                selectedButton.setBackgroundColor(Color.RED);
+                if (ansA.getText().toString().equals(correctAnswer)) {
 
-            if (selectedButton.getId() == R.id.ans_B){
-                if(ansB.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
-                    ansB.setBackgroundColor(Color.GREEN);
-                }else {
-                    ansB.setBackgroundColor(Color.RED);
-                }
-            }
+                        ansA.setBackgroundColor(Color.GREEN);
 
-            if (selectedButton.getId() == R.id.ans_C){
-                if(ansC.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
-                    ansC.setBackgroundColor(Color.GREEN);
-                }else {
-                    ansC.setBackgroundColor(Color.RED);
                 }
-            }
+                if (ansB.getText().toString().equals(correctAnswer)) {
 
-            if (selectedButton.getId() == R.id.ans_D){
-                if(ansD.getText().toString().equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
-                    ansD.setBackgroundColor(Color.GREEN);
-                }else {
-                    ansD.setBackgroundColor(Color.RED);
+                        ansB.setBackgroundColor(Color.GREEN);
+
                 }
-            }
+                if (ansC.getText().toString().equals(correctAnswer)) {
+
+                        ansC.setBackgroundColor(Color.GREEN);
+
+                }
+                if (ansD.getText().toString().equals(correctAnswer)) {
+
+                        ansD.setBackgroundColor(Color.GREEN);
+
+                }
+
         }
 
         else{
